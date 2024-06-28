@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+        body{
+            background-image: url(images/hah.jpg);
+            background-position: center;
+            background-size: 100%;
+            object-fit: cover;
+    
+        }
+
+        .header {
+            text-align: center;
+            color: rgb(74, 46, 102);
+            font-size: 30px;
+            padding: 20px 0;
+            margin-top: -8px;
+            background-color: whitesmoke;
+            text-decoration: underline;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 60vh;
+            overflow: hidden;
+        }
+
+        div {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 20px;
+
+        }
+
+        input {
+            font-size: 22px;
+            text-align: center;
+            width: 220px;
+            height: 70px;
+            margin-right: 10px;
+            outline: none;
+            border: 1px ridge;
+        }
+
+        select {
+            margin-top: 20px;
+            width: 40%;
+            height: 40px;
+            background-color: whitesmoke;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 class="header">Unit Converter</h2>
+    
+
+    <div class="container2">
+        <select name="comparsion" id="comparsion">
+            <option value="Length">Length</option>
+            <option value="Mass">Mass</option>
+            <option value="Speed">Speed</option>
+            <option value="Time">Time</option>
+        </select>
+    </div>
+    <div class="container">
+
+        <div>
+            <label for="kilo" id="firstname">Kilometre</label>
+
+            <input type="number" name="kilo" id="kilo">
+        </div>
+        <div>
+            <label for="metre" id="secondname">Metre</label>
+
+            <input type="number" name="metre" id="metre">
+        </div>
+    </div>
+
+
+    <script>
+        let select = document.getElementById("comparsion");
+        var kilo = document.getElementById("kilo");
+        let firstname = document.getElementById("firstname");
+        let secondname = document.getElementById("secondname");
+
+
+
+        kilo.addEventListener("input", first);
+
+let currentfunction = null;
+
+function updateevent(newfunction) {
+    
+    if (currentfunction){
+
+kilo.removeEventListener("input",currentfunction);
+
+    }
+    currentfunction = newfunction;
+    kilo.addEventListener("input",currentfunction);
+
+
+}
+        
+        select.addEventListener("change", function () {
+            if (select.value == "Length") {
+                firstname.innerHTML = "kilometre";
+                secondname.innerHTML = "metre";
+                updateevent(first);
+            } else if (select.value == "Speed") {
+                firstname.innerHTML = "Kilometre per hour";
+                secondname.innerHTML = "metre per second";
+                updateevent(second);
+            } else if (select.value == "Mass") {
+                firstname.innerHTML = "Kilogram";
+                secondname.innerHTML = "Gram";
+                updateevent(third);
+            } else if (select.value == "Time") {
+                firstname.innerHTML = "Hours";
+                secondname.innerHTML = "Seconds";
+                updateevent(forth);
+            
+            }
+
+        });
+
+        kilo.value = 0;
+        function first() {
+            let meter = document.getElementById("metre");
+            let kilos = kilo.value;
+            let meters = kilos * 1000;
+           return meter.value = meters;
+        }
+
+        function second() {
+            var meter = document.getElementById("metre");
+            let kilos = kilo.value;
+            let meters = kilos * 0.277778;
+           return meter.value = meters;
+        }
+
+        function third() {
+            var meter = document.getElementById("metre");
+            var kilos = kilo.value;
+            var meters = kilos * 1000;
+           return meter.value = meters;
+        }
+
+        function forth() {
+            var meter = document.getElementById("metre");
+            var kilos = kilo.value;
+            var meters = kilos*3600;
+          return  meter.value = meters;
+        
+        }
+
+
+
+        
+
+
+    </script>
+</body>
+
+</html>
